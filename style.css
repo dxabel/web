@@ -1,0 +1,339 @@
+/* Importación de la fuente Quicksand desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap');
+
+/* Estilos generales del cuerpo de la página */
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilos del encabezado */
+header {
+    text-align: center;
+    padding: 20px;
+
+    color: #fff;
+}
+h1 {
+   font-size: 60px;
+   /* Texto con degradado */
+  background: linear-gradient(to right, #fa4261, #f39762, #d5aa10);
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+/* Estilos de la barra de navegación */
+nav {
+    align-items: center;
+    background: linear-gradient(to right, #fa4261, #f39762, #d5aa10);
+    padding: 10px;
+}
+
+/* Estilos de los enlaces de la barra de navegación */
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+/* Estilos de la galería de imágenes */
+#gallery {
+    padding-bottom: 3em;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    /*Establece los márgenes internos (padding) para el contenedor de la galería, proporcionando espacio alrededor de su contenido.*/
+    display: grid;
+    /*Indica que el contenedor de la galería utilizará el sistema de diseño de cuadrícula de CSS.*/
+    grid-template-columns: repeat(4, 1fr);
+    /*Define las columnas de la cuadrícula, estableciendo que habrá 4 columnas con un ancho igual (1fr) cada una.*/
+    grid-auto-rows: 160px;
+    /*Establece la altura predeterminada de las filas de la cuadrícula en 160 píxeles. Las filas pueden ajustarse automáticamente según el contenido.*/
+    grid-template-areas: 
+        "img1 img1 img2 img3"
+        "img1 img1 img4 img4"
+        "img5 img5 img6 img7";
+        /*Define áreas específicas de la cuadrícula para cada imagen. Cada línea de la cadena representa una fila, y las áreas de las imágenes se especifican para cada columna.*/
+    gap: .8em;
+    /*Establece el espacio entre las celdas de la cuadrícula, tanto horizontal como verticalmente. En este caso, se utiliza un espacio de 0.8em.*/
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+/* Estilos específicos para cada imagen en la galería */
+.img1 { grid-area: img1; }
+.img2 { grid-area: img2; }
+.img3 { grid-area: img3; }
+.img4 { grid-area: img4; }
+.img5 { grid-area: img5; }
+.img6 { grid-area: img6; }
+.img7 { grid-area: img7; }
+
+/* Estilos generales para las fotos en la galería */
+.photo {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+/* Estilos del efecto visual antes de la imagen en la galería */
+.photo::before {
+    content: "Hola";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #e72861;
+    opacity: .4;
+    transform: scale(0);
+    transition: transform .4s;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Estilos al pasar el ratón sobre las fotos en la galería */
+.photo:hover::before {
+    transform: scale(1.1);
+}
+
+
+
+
+/* Estilos del lightbox (vista ampliada) */
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    opacity: 1;
+}
+
+/* Estilos de la imagen dentro del lightbox */
+#lightbox img {
+    width: 80%;
+    height: auto;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos del botón para cerrar el lightbox */
+#closeBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Estilos del pie de página */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+/* Establecer estilos específicos para dispositivos móviles (ancho máximo de 600px) */
+@media only screen and (max-width: 600px) {
+/*@media: Indica que se está utilizando una regla de medios en CSS.
+- only screen: Limita la regla de medios a dispositivos de tipo pantalla (como monitores, tabletas y teléfonos), excluyendo, por ejemplo, impresoras.
+- and: Combina varias condiciones.
+(max-width: 600px): Establece la condición específica de ancho máximo de la pantalla. En este caso, los estilos se aplicarán si el ancho de la pantalla es de 600 píxeles o menos.*/
+    #gallery {
+        grid-template-columns: 1fr; /* Una columna completa para dispositivos móviles */
+        grid-template-areas:
+            "img1"
+            "img2"
+            "img3"
+            "img4"
+            "img5"
+            "img6"
+            "img7";
+    }
+
+    /* Ajustes para las imágenes en dispositivos móviles
+    .img1, .img4, .img5 {
+        grid-area: auto; Ocupa toda la fila 
+    }
+
+    .img2, .img3, .img6, .img7 {
+        grid-area: auto; Ocupa media fila 
+    }
+
+    .photo::before {
+        background: linear-gradient(to bottom, rgba(208, 40, 231, 0.7) 90%, rgba(208, 40, 231, 0));
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Altura del encabezado
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        z-index: 1;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px solid #555;
+    }
+
+    .menu-toggle {
+        display: block;
+    }*/
+}
+
+
+/* Menú responsive */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  nav {
+    background-color: #d5aa10;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background: #3c3c3c;
+    opacity: .8;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .menu-icon {
+      display: block;
+      color: rgb(234, 86, 86);
+      float: right;
+      padding: 15px;
+      cursor: pointer;
+    }
+    
+    .menu {
+      display: none;
+      clear: both;
+    }
+  
+    .menu.active {
+      display: block;
+    }
+  
+    li {
+      float: none;
+    }
+  }
+  
+/* Estilos para el cuadro de diálogo modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 20px; /* Ajusta la distancia desde el borde inferior */
+    transform: translateX(-50%);
+    max-width: 90%; /* Limita el ancho máximo */
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-contenido {
+    background-color: #fefefe;
+    opacity: .8;
+    padding: 1px 10px;
+    padding-bottom: 15px;
+
+    border-radius: 10px;
+}
+
+.modal-contenido h2 {
+    margin: 0;
+}
+
+.modal-contenido button {
+    margin-top: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.modal-contenido button:hover {
+    background-color: #ddd;
+       
+}
+
+/* Botón ir arriba*/
+/*Flecha para hacer la pagina hacia arriba*/
+#goToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    background: linear-gradient(to right, #fa4261, #f39762, #d5aa10);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  #goToTopBtn:hover {
+    background: linear-gradient(to right, #d5aa10, #f39762, #fa4261);
+  }
+  
+  
